@@ -1,0 +1,29 @@
+{
+  "name": "bilibili-collection-downloader",
+  "version": "0.1.0",
+  "description": "按合集分类下载 B站 UP 主视频,扫码登录、增量更新,可作为 Claude/AI agent 技能一键调用 | Bilibili collection downloader with QR login & incremental sync, usable as a Claude skill",
+  "main": "bili_download.js",
+  "bin": {
+    "bili-login": "login.js",
+    "bili-download": "bili_download.js"
+  },
+  "scripts": {
+    "login": "node login.js",
+    "download": "node bili_download.js",
+    "start": "node bili_download.js",
+    "check": "node --check login.js && node --check bili_download.js"
+  },
+  "keywords": [
+    "bilibili", "downloader", "bilibili-downloader", "video-downloader",
+    "collection", "archive", "claude", "claude-skill", "ai-agent", "yt-dlp", "wbi", "nodejs"
+  ],
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Langni/bilibili-collection-downloader.git"
+  },
+  "homepage": "https://github.com/Langni/bilibili-collection-downloader#readme",
+  "bugs": { "url": "https://github.com/Langni/bilibili-collection-downloader/issues" },
+  "author": "大龙虾"
+}

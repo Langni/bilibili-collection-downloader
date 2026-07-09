@@ -1,0 +1,18 @@
+# 敏感: 登录凭证
+cookies.txt
+*.cookies.txt
+_login_qr.png
+
+# 下载产物
+bili_downloads/
+download_log.json
+
+# 依赖二进制(体积大,用户自己装)
+yt-dlp.exe
+yt-dlp
+ffmpeg.exe
+ffprobe.exe
+
+# node
+node_modules/
+npm-debug.log

@@ -1,0 +1,3 @@
+# Netscape HTTP Cookie File
+# 这是示例文件。真实 cookies.txt 由 `node login.js` 扫码自动生成,含你的登录态,切勿提交!
+# .bilibili.com	TRUE	/	FALSE	<过期时间>	SESSDATA	<你的值>
