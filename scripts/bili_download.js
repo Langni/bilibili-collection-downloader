@@ -142,7 +142,7 @@ async function getSeasonVideos(mid, sid, cookie, ik, sk) {
   let cookieFile = getFlag('cookie', process.env.BILI_COOKIE || 'cookies.txt');
   const hasCookieFile = fs.existsSync(cookieFile);
   if (!hasCookieFile && parsed.type === 'collection') {
-    console.log('⚠️  未找到 cookie(' + cookieFile + ')。合集下载需登录(arc/search 匿名返 -352 风控)。');
+    console.log('⚠️  未找到 cookie(' + cookieFile + ')。合集内容需登录访问(接口对匿名请求返回 -352)。');
     console.log(isTTY ? '   请运行: node login.js  然后重跑' : '   skill 场景: 请先调用 login.js 扫码生成 cookies.txt');
     process.exit(1);
   }

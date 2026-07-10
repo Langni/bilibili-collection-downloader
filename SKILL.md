@@ -27,19 +27,19 @@ description: 把你支持/关注的 B站创作者内容完整归档到本地 —
 
 ## 前置(仅首次)
 
-1. **扫码登录**(合集下载必需,arc/search 接口对匿名返风控):跑 `node login.js` → 手机 B站 App 扫码 → 自动生成 `cookies.txt`
+1. **扫码登录**(合集内容需登录访问):跑 `node scripts/login.js` → 手机 B站 App 扫码 → 自动生成 `cookies.txt`
 2. **依赖二进制**:`yt-dlp.exe` / `ffmpeg.exe` / `ffprobe.exe` 放脚本同目录(可用 install 脚本自动下)
 
 ## 执行流程
 
 1. 从用户输入提取 UP 主 UID(数字,或从 space URL 解析)
-2. 跑:`node bili_download.js <UID> [--out <目录>] [--cookie <文件>]`
+2. 跑:`node scripts/bili_download.js <UID> [--out <目录>] [--cookie <文件>]`
    - `--out`:下载目录,默认 `bili_downloads`。**用户指定目录时用此参数传入**
    - `--cookie`:cookie 文件,默认 `cookies.txt`
    - skill(非交互)场景脚本自动走默认值,不会阻塞等输入
 3. 脚本自动:
    - **cookie 预检**:启动先验 isLogin,过期立即提示重扫(不会白跑)
-   - 若无 cookie:提示先跑 `login.js`(合集下载必需)
+   - 若无 cookie:提示先跑 `scripts/login.js`(合集下载必需)
    - wbi 签名 + cookie 调 `arc/search`(全部视频) + `view`(合集归属) → 聚合 season_id
    - `seasons_archives_list` 拿每个**合集内视频(合集定义顺序)**
    - 按合集建目录,`序号_标题.mp4` 命名
@@ -62,11 +62,11 @@ bili_downloads/
 
 | 现象 | 原因 | 处理 |
 |---|---|---|
-| `-352 风控` | 无 cookie 或过期 | 跑 `node login.js` 重新扫码 |
-| 只下到 3 分钟预览 | 付费视频 + cookie 无购买权限 | 确认账号已购;重跑 login.js |
+| `-352`(需登录) | 无 cookie 或过期 | 跑 `node scripts/login.js` 重新扫码 |
+| 只下到 3 分钟预览 | 付费视频 + cookie 无购买权限 | 确认账号已购;重跑 scripts/login.js |
 | `10054 连接重置` | 临时网络 | 重跑(增量自动补失败的) |
 | 中文目录/文件名"乱码" | 仅控制台**显示**乱码,文件系统**实际正确** | 忽略,看实际文件 |
 
 ## 定时增量(可选)
 
-配合 cron/计划任务定期跑 `node bili_download.js <UID>`,自动补 UP 主新发的视频(增量跳过已下)。
+配合 cron/计划任务定期跑 `node scripts/bili_download.js <UID>`,自动补 UP 主新发的视频(增量跳过已下)。
